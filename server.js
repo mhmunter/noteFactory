@@ -24,6 +24,23 @@ res.json(notes)
 })
 
 
+app.post("/api/notes",(req, res) => {
+  fs.readFile("./db/db.json", function(err, data){
+    if(err) throw err
+    let notes = JSON.parse(data)
+    console.log(notes)
+  let newNote = req.body
+  //add a unique id to new note 
+  notes.push(newNote)
+  fs.writeFile("./db/db.json", JSON.stringify(notes), function(err, data){
+    if(err) throw err
+    res.json(notes)
+  } )
+  })
+  
+  })
+
+
 
 //html routes
 
