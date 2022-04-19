@@ -11,6 +11,21 @@ app.use(express.json());
 app.use(express.static('public'));
 
 
+//api routes
+
+app.get("/api/notes",(req, res) => {
+fs.readFile("./db/db.json", function(err, data){
+  if(err) throw err
+  let notes = JSON.parse(data)
+  console.log(notes)
+res.json(notes)
+})
+
+})
+
+
+
+//html routes
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/notes.html'));
