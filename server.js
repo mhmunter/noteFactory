@@ -3,8 +3,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 // const apiRoutes = require('./routes/apiRoutes');
 // const htmlRoutes = require('./routes/htmlRoutes');
-const fs = require('fs')
-const path = require("path")
+const fs = require('fs');
+const path = require("path");
+const {v4 : uuidv4} = require('uuid');
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,6 +27,7 @@ res.json(notes)
 
 
 app.post("/api/notes",(req, res) => {
+  var UU = uuidv4();
   fs.readFile("./db/db.json", function(err, data){
     if(err) throw err
     let notes = JSON.parse(data)
@@ -32,6 +35,7 @@ app.post("/api/notes",(req, res) => {
   let newNote = req.body
   //add a unique id to new note 
   notes.push(newNote)
+  newNote.id = UU;
   fs.writeFile("./db/db.json", JSON.stringify(notes), function(err, data){
     if(err) throw err
     res.json(notes)
