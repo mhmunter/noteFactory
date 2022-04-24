@@ -1,4 +1,4 @@
-# **EmployeeGenerator**
+# **Note Taker**
 
 ## Discription: 
 - It is a note taker program, that will accept inputted notes and save them.. 
