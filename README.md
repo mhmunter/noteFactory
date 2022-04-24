@@ -1,7 +1,7 @@
 # **EmployeeGenerator**
 
 ## Discription: 
-- A program that will use command line to prompts to create a professional tem listing. 
+- It is a note taker program, that will accept inputted notes and save them.. 
 
 
  ## **Screen Shot**
