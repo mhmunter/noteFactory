@@ -7,7 +7,7 @@
  ## **Screen Shot**
 [Image of project](https://github.com/mhmunter/noteFactory/blob/main/noteFactoryPic.png)
 
-##**Link**
+## **Link**
 [link to project](https://young-springs-34442.herokuapp.com/)
 
 ## **Questions:**
