@@ -1,7 +1,11 @@
 # **Note Taker**
 
 ## Discription: 
-- It is a note taker program, that will accept inputted notes and save them.. 
+- It is a note taker program, that will accept inputted notes and save them.
+
+## **Usage**
+- fork and and install npm packages.
+- npm start and open on localhost:3001
 
 
  ## **Screen Shot**
