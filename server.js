@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3001;
 // const htmlRoutes = require('./routes/htmlRoutes');
 const fs = require('fs');
 const path = require("path");
-const {v4 : uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -15,50 +15,49 @@ app.use(express.static('public'));
 
 //api routes
 
-app.get("/api/notes",(req, res) => {
-fs.readFile("./db/db.json", function(err, data){
-  if(err) throw err
-  let notes = JSON.parse(data)
-  console.log(notes)
-res.json(notes)
-})
-
-})
-
-
-app.post("/api/notes",(req, res) => {
-  var UU = uuidv4();
-  fs.readFile("./db/db.json", function(err, data){
-    if(err) throw err
+app.get("/api/notes", (req, res) => {
+  fs.readFile("./db/db.json", function (err, data) {
+    if (err) throw err
     let notes = JSON.parse(data)
     console.log(notes)
-  let newNote = req.body
-  //add a unique id to new note 
-  notes.push(newNote)
-  newNote.id = UU;
-  fs.writeFile("./db/db.json", JSON.stringify(notes), function(err, data){
-    if(err) throw err
     res.json(notes)
-  } )
   })
-  
+
+})
+
+
+app.post("/api/notes", (req, res) => {
+  var UU = uuidv4();
+  fs.readFile("./db/db.json", function (err, data) {
+    if (err) throw err
+    let notes = JSON.parse(data)
+    console.log(notes)
+    let newNote = req.body
+    notes.push(newNote)
+    newNote.id = UU;
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes), function (err, data) {
+      if (err) throw err
+      res.json(notes)
+    })
   })
+
+})
 
 
 
 //html routes
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/notes.html'));
-  })
+  res.sendFile(path.join(__dirname, 'public/notes.html'));
+})
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
-  })
-
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+})
 
 
-  app.listen(PORT, () => {
-    console.log(`API server now on port ${PORT}!`);
-  });
+
+
+app.listen(PORT, () => {
+  console.log(`API server now on port ${PORT}!`);
+});
